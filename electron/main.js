@@ -100,6 +100,8 @@ async function detectProjects() {
 
 const TOOL_DEBOUNCE_MS = 2000;
 let lastRunClaudeTime = 0;
+const CYCLE_DEBOUNCE_MS = 600;
+let lastCycleTime = 0;
 
 const tools = [
   {
@@ -397,6 +399,10 @@ ipcMain.handle('get-hotkeys', () => ({
 }));
 
 async function cycleProject() {
+  const now = Date.now();
+  if (now - lastCycleTime < CYCLE_DEBOUNCE_MS) return;
+  lastCycleTime = now;
+
   const projects = await detectProjects();
   const withClaude = projects.filter((p) => p.hasClaude);
   if (withClaude.length <= 1) return;
