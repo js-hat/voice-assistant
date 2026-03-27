@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Voice PTT</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Voice PTT</h1>
+      <div id="status" class="status disconnected">Disconnected</div>
+    </header>
+
+    <div class="project-select-wrap">
+      <select id="project-select" class="project-select" disabled>
+        <option value="">Loading projects...</option>
+      </select>
+    </div>
+
+    <div id="transcript" class="transcript">
+      <p class="placeholder">Hold the button and speak</p>
+    </div>
+
+    <div class="ptt-wrap">
+      <button id="ptt-btn" class="ptt-btn" disabled>&#127908;</button>
+      <span class="ptt-hint">Hold to talk</span>
+    </div>
+
+    <div class="connect-wrap">
+      <button id="btn-connect" class="btn btn-primary">Connect</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

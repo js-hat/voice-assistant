@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>PTT Voice</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <select id="project-select" class="project-select">
+        <option value="">Loading...</option>
+      </select>
+      <div id="status" class="status disconnected">Connecting</div>
+    </div>
+
+    <div class="hotkey-bar">
+      <span class="hotkey-label">PTT:</span>
+      <button id="hotkey-ptt" class="hotkey-btn" data-which="ptt">
+        <span id="hotkey-ptt-name">...</span>
+      </button>
+      <span class="hotkey-label">Switch:</span>
+      <button id="hotkey-switch" class="hotkey-btn" data-which="switch">
+        <span id="hotkey-switch-name">...</span>
+      </button>
+    </div>
+
+    <div id="transcript" class="transcript">
+      <p class="placeholder">Hold the PTT key to talk</p>
+    </div>
+
+    <div class="ptt-indicator" id="ptt-indicator">
+      <div class="ptt-dot" id="ptt-dot"></div>
+      <span id="ptt-label">Ready</span>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

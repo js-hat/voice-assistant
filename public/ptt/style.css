@@ -1,0 +1,233 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0f0f13;
+  --surface: #1a1a24;
+  --border: #2a2a3a;
+  --text: #e4e4ef;
+  --text-muted: #8888a0;
+  --primary: #6c63ff;
+  --danger: #e05555;
+  --success: #34c759;
+  --recording: #e05555;
+}
+
+html {
+  touch-action: manipulation; /* prevent double-tap zoom */
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ──────────────────────────────────────────── */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h1 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.status {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 100px;
+  font-weight: 500;
+}
+
+.status.disconnected { background: var(--border); color: var(--text-muted); }
+.status.connecting { background: #3a3520; color: #f0c040; }
+.status.connected { background: #1a3020; color: var(--success); }
+.status.recording { background: rgba(224, 85, 85, 0.2); color: var(--recording); }
+.status.processing { background: #3a3520; color: #f0c040; }
+
+/* ── Project selector ────────────────────────────────── */
+
+.project-select-wrap {
+  padding: 0.75rem 0;
+}
+
+.project-select {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.9rem;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238888a0' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+}
+
+.project-select:disabled {
+  opacity: 0.4;
+}
+
+/* ── Transcript ──────────────────────────────────────── */
+
+.transcript {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 0.75rem 0;
+  overflow-y: auto;
+  min-height: 120px;
+  scroll-behavior: smooth;
+}
+
+.transcript .placeholder {
+  color: var(--text-muted);
+  text-align: center;
+  padding-top: 40px;
+  font-size: 0.9rem;
+}
+
+.msg {
+  margin-bottom: 0.6rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 10px;
+  max-width: 90%;
+  line-height: 1.5;
+  font-size: 0.9rem;
+  word-wrap: break-word;
+}
+
+.msg.user {
+  background: #2a2a3a;
+  margin-left: auto;
+  border-bottom-right-radius: 3px;
+}
+
+.msg.assistant {
+  background: #1e1e30;
+  border-bottom-left-radius: 3px;
+}
+
+.msg .label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.15rem;
+  font-weight: 600;
+}
+
+/* ── PTT Button ──────────────────────────────────────── */
+
+.ptt-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 0 1rem;
+  gap: 0.75rem;
+}
+
+.ptt-btn {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ptt-btn:active,
+.ptt-btn.recording {
+  background: var(--recording);
+  border-color: var(--recording);
+  color: #fff;
+  transform: scale(1.08);
+  box-shadow: 0 0 40px rgba(224, 85, 85, 0.4);
+}
+
+.ptt-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.ptt-btn:disabled:active {
+  transform: none;
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: none;
+}
+
+.ptt-hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ── Connect button ──────────────────────────────────── */
+
+.connect-wrap {
+  padding: 0.5rem 0;
+}
+
+.btn {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn:active { background: var(--border); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-primary {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.btn-danger {
+  border-color: var(--danger);
+  color: var(--danger);
+}
